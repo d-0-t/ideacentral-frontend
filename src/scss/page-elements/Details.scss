@@ -1,0 +1,83 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+.product-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 50px;
+  border-radius: 15px;
+  background: linear-gradient(
+    -30deg,
+    #e6ddd985 0%,
+    rgba(245, 245, 244, 0.575) 70%
+  );
+
+  &__imageContainer {
+    max-width: 40%;
+    max-height: 50vh;
+    background-color: white;
+    outline: 1px solid rgb(209, 209, 209);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    @include mixins.respond(medium) {
+      align-self: center;
+      max-width: 80%;
+      max-height: 40vh;
+      margin-bottom: 20px;
+    }
+  }
+  &__imageContainer > img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  &__info {
+    border-radius: 8px;
+    border: 1px solid rgb(194, 194, 194);
+    box-shadow: 2px 2px 5px rgb(218, 214, 206);
+    margin: 3px;
+    padding: 10px;
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(-30deg, rgb(228, 228, 228) 0%, white 70%);
+    width: 40%;
+    margin-left: 20px;
+
+    @include mixins.respond(medium) {
+      width: 80%;
+      margin-left: 0px;
+    }
+
+    &--highlight {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    &__title,
+    &__rating,
+    &__price {
+      align-self: center;
+      text-align: center;
+    }
+
+    &__title {
+      color: goldenrod;
+    }
+    &__rating {
+      font-style: italic;
+    }
+    &__price {
+      font-size: 2em;
+      margin: 10px;
+    }
+  }
+  &__info > button {
+    align-self: center;
+  }
+}

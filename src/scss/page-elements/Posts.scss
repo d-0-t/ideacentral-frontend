@@ -1,0 +1,61 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+.post-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.post {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin: 5px;
+  border: 1px solid gray;
+  border-radius: 15px;
+  max-width: 600px;
+  background-color: rgba(243, 243, 243, 0.493);
+  @include mixins.respond(medium) {
+    flex-direction: column;
+  }
+
+  &__image {
+    max-height: 200px;
+    min-width: 200px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 5px;
+    @include mixins.respond(medium) {
+      width: 100%;
+      margin: 0 0 15px 0;
+    }
+  }
+  &__text {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+
+    @include mixins.respond(medium) {
+      min-height: auto;
+      text-align: justify;
+    }
+
+    &__title {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    &__title:first-letter {
+      text-transform: capitalize;
+    }
+    &__abstract:first-letter {
+      text-transform: capitalize;
+    }
+    &__button {
+      align-self: center;
+    }
+  }
+}

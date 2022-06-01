@@ -1,0 +1,236 @@
+#web-window,
+#web-background,
+#web-sidebar,
+#web-header,
+#web-line1,
+#web-line2 {
+  opacity: 0;
+}
+
+#web-window {
+  animation: web-window 1.5s ease forwards;
+  transform-origin: center;
+  animation-delay: 1s;
+}
+@keyframes web-window {
+  from {
+    opacity: 1;
+    transform: rotateX(270deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(360deg);
+  }
+}
+
+#web-background {
+  animation: web-bg 2s ease forwards;
+  animation-delay: 2s;
+}
+@keyframes web-bg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#web-header,
+#web-line1,
+#web-line2 {
+  animation: web-horizontal 1s ease forwards;
+  animation-delay: 3s;
+}
+#web-line1 {
+  animation-delay: 4.5s;
+}
+#web-line2 {
+  animation-delay: 6s;
+}
+@keyframes web-horizontal {
+  from {
+    opacity: 0;
+    transform: rotateY(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(360deg);
+  }
+}
+
+#web-sidebar {
+  animation: web-vertical 1s ease forwards;
+  animation-delay: 7.5s;
+}
+@keyframes web-vertical {
+  from {
+    opacity: 0;
+    transform: rotateX(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(360deg);
+  }
+}
+
+
+
+
+#man-head {
+  animation: head 5s linear infinite alternate;
+  transform-origin: center; 
+  transform-box: fill-box;
+}
+@keyframes head {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(10deg);
+  }
+}
+
+#arm-front-shoulder {
+  transform: translateX(-5px);
+}
+#arm-front, #arm-back {
+  animation: arm-front 4s ease infinite;
+  transform-origin: center; 
+  transform-box: fill-box;
+}
+@keyframes arm-front {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  5% {
+    transform: rotateZ(3deg);
+  }
+  25% {
+    transform: rotateZ(-1deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+  55% {
+    transform: rotateZ(-5deg);
+  }
+  80% {
+    transform: rotateZ(-1deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+#arm-behind {
+  animation: arm-behind 3s ease infinite;
+  transform-origin: center; 
+  transform-box: fill-box;
+}
+@keyframes arm-behind {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  5% {
+    transform: rotateZ(3deg);
+  }
+  25% {
+    transform: rotateZ(-1deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+  55% {
+    transform: rotateZ(-5deg);
+  }
+  80% {
+    transform: rotateZ(-1deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+
+
+#flower-pink, #flower-yellow {
+  animation: flowers 3s linear infinite alternate;
+  transform-origin: bottom right; 
+  transform-box: fill-box;
+}
+#flower-yellow {
+  animation: flowers 5s linear infinite alternate;
+}
+@keyframes flowers {
+  0% {
+    opacity: 0.5;
+    transform: rotateZ(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateZ(3deg);
+  }
+}
+
+#shoe-front {
+  animation: shoe 2s linear infinite alternate;
+  transform-origin: bottom left; 
+  transform-box: fill-box;
+}
+@keyframes shoe {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  20% {
+    transform: rotateZ(-5deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+}
+
+#leg-front {
+  animation: leg-front 10s linear infinite alternate;
+  transform-origin: top left; 
+  transform-box: fill-box;
+}
+@keyframes leg-front {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(1deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+#man-body {
+  animation: body 5s linear infinite alternate;
+  transform-origin: bottom; 
+  transform-box: fill-box;
+}
+@keyframes body {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+#laptop {
+  animation: laptop 1s ease infinite alternate;
+  transform-origin: bottom; 
+  transform-box: fill-box;
+}
+@keyframes laptop {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(1deg);
+  }
+}

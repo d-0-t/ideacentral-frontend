@@ -1,0 +1,195 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+.darktheme {
+  &__app {
+    background-color: rgb(43, 41, 61);
+    color: var.$soft-gray;
+  }
+  &__footer {
+    background-color: rgb(25, 25, 34);
+  }
+  &__header {
+    background-color: rgb(32, 29, 58);
+
+    &__themeswitcher {
+      filter: invert(0.95);
+      &:hover {
+        filter: invert(0);
+      }
+    }
+    &__brand {
+      color: rgb(212, 196, 152);
+    }
+  }
+  &__fieldError {
+    color: rgb(255, 77, 77);
+    text-shadow: 2px 2px 5px black;
+  }
+
+  &__input,
+  &__sort-select {
+    background-color: rgb(25, 25, 34);
+    color: rgb(212, 212, 212);
+  }
+
+  &__product {
+    background: linear-gradient(
+      -30deg,
+      rgb(25, 25, 34) 0%,
+      rgb(44, 44, 58) 70%
+    );
+    box-shadow: 2px 2px 5px rgb(18, 17, 31);
+    border: 1px solid rgb(112, 112, 112);
+  }
+
+  &__btn {
+    background-color: rgba(218, 165, 32, 0.411);
+    outline: 1px solid gray;
+    &:hover {
+      background-color: rgb(206, 110, 0);
+    }
+    &--cartManip[data-cartstate="true"] {
+      background-color: rgb(112, 53, 53);
+      &:hover {
+        background-color: rgb(197, 58, 81);
+      }
+    }
+    &--cartManip[data-cartstate="false"] {
+      background-color: rgb(77, 121, 77);
+      &:hover {
+        background-color: rgb(50, 190, 50);
+      }
+    }
+    &--back {
+      background-color: rgb(163, 119, 53);
+      &:hover {
+        background-color: goldenrod;
+      }
+    }
+    &--checkout,
+    &--emptycart {
+      background-color: rgb(77, 121, 77);
+      transition: background-color 0.2s;
+      &:hover {
+        background-color: goldenrod;
+      }
+    }
+    &--emptycart {
+      background-color: rgb(197, 58, 81);
+      &:hover {
+        background-color: rgb(88, 88, 88);
+      }
+    }
+  }
+
+  &__contacttype {
+    transition: color 0.5s, background-color 0.5s, border-radius 0.5s;
+  }
+  &__contacttype:hover {
+    background-color: rgba(0, 0, 0, 0.308);
+    color: white;
+  }
+  &__svg-container {
+    background-color: rgb(66, 64, 95);
+  }
+
+  &__product-details {
+    background: linear-gradient(
+      -30deg,
+      rgba(23, 21, 34, 0.336) 0%,
+      rgba(132, 135, 177, 0.637) 100%
+    );
+    &__info {
+      background: rgba(0, 0, 0, 0.226);
+      box-shadow: 0px 0px 10px rgb(31, 31, 31);
+    }
+    &__imageContainer {
+      outline: none;
+      box-shadow: 0px 0px 10px 10px rgba(23, 21, 34, 0.336);
+    }
+  }
+
+  &__product-section-cart {
+    background: linear-gradient(
+      -30deg,
+      rgba(23, 23, 34, 0.473) 0%,
+      rgba(89, 89, 114, 0.438) 70%
+    );
+    &__imgCont {
+      box-shadow: 0px 0px 5px 5px rgba(23, 21, 34, 0.336);
+      filter: contrast(1) brightness(0.9);
+    }
+    &__imgCont:hover {
+      filter: contrast(1) brightness(1);
+    }
+  }
+
+  &__nav-item {
+    background-color: rgb(25, 25, 34);
+    &__btn {
+      color: rgb(223, 215, 197);
+    }
+    &--active {
+      background-color: rgb(77, 121, 77);
+    }
+    &:hover,
+    &--active:hover {
+      background-color: goldenrod;
+    }
+  }
+
+  &__error404gif {
+    filter: invert(89%) sepia(15%) saturate(1300%) hue-rotate(198deg)
+      brightness(95%) contrast(95%);
+  }
+
+  &__category {
+    color: var.$soft-gray;
+    background-color: rgb(32, 37, 48);
+    outline: 1px solid rgb(105, 105, 105);
+    transition: outline 0.1s, background-color 0.3s;
+    &:hover {
+      background-color: rgb(58, 65, 82);
+      outline: 2px solid rgb(133, 133, 133);
+    }
+    &--active {
+      color: white;
+      background-color: rgb(202, 145, 0);
+      text-shadow: 1px 1px 0px black;
+      &:hover {
+        background-color: #39aa39;
+      }
+    }
+  }
+
+  &__data-section {
+    background: linear-gradient(
+      -30deg,
+      rgb(25, 25, 34) 0%,
+      rgb(44, 44, 58) 70%
+    );
+    box-shadow: 2px 2px 5px rgb(18, 17, 31);
+    border: 1px solid rgb(112, 112, 112);
+  }
+
+  &__data {
+    &--title {
+      color: rgb(168, 168, 168);
+    }
+    &--link {
+      color: goldenrod;
+      background-color: rgba(0, 0, 0, 0.11);
+    }
+    &--link:hover {
+      color: rgb(255, 213, 107);
+      background-color: rgba(100, 100, 100, 0.267);
+    }
+  }
+  &__idea {
+    &__title {
+      color: goldenrod;
+      text-shadow: 2px 1px 5px black;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+.btn--theme-switcher {
+  cursor: pointer;
+  display: block;
+  font-size: 26px;
+  margin-left: 10px;
+}
+.btn--theme-switcher:hover {
+  filter: invert(1)
+}

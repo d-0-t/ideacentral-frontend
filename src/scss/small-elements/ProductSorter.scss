@@ -1,0 +1,7 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+.sort-select {
+  font-size: 1rem;
+  padding: 10px;
+}

@@ -1,0 +1,8 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+.footnote {
+  color: gray;
+  font-style: italic;
+  font-size: 0.8em;
+}

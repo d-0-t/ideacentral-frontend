@@ -1,0 +1,66 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+.page-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 90px);
+  @include mixins.respond(medium) {
+    min-height: calc(100vh - 120px);
+  }
+}
+.intro {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    @include mixins.respond(medium) {
+      flex-direction: column;
+    }
+
+    &__text {
+      margin-right: 7%;
+      text-align: justify;
+      @include mixins.respond(medium) {
+        margin: 0;
+      }
+    }
+    &__svg-container {
+      min-width: calc(45vw - 20px);
+      background-color: rgba(255, 255, 255, 0.24);
+      border-radius: 150px 70px 50px 50px;
+      padding: 10px;
+      @include mixins.respond(medium) {
+        width: fit-content;
+        max-width: 530px;
+      }
+    }
+    &__svg-container > svg {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+    }
+  }
+}
+.down-arrow {
+  position: relative;
+  bottom: 20px;
+  align-self: center;
+  justify-self: flex-end;
+
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 30px solid goldenrod;
+
+  &:hover {
+    border-top: 30px solid var.$dark-gold;
+    cursor: pointer;
+  }
+}

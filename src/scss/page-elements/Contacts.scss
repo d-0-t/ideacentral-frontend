@@ -1,0 +1,47 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+#contacttypes {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.contacttype {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 15px;
+  transition: background-color 0.5s, border-radius 0.5s;
+}
+.contacttype:hover {
+  background-color: var.$soft-gray;
+  border-radius: 15px;
+}
+.contacticon {
+  height: 50px;
+  margin: 0 auto;
+  padding-bottom: 15px;
+  filter: invert(0.5);
+  z-index: 0;
+}
+
+.jsx-4131126525 {
+  height: 45px;
+  margin: 0 auto;
+  padding-bottom: 15px;
+  z-index: 0;
+  fill: gray;
+}
+
+.link {
+  text-decoration: none;
+  color: var.$dark-gold;
+  font-weight: bold;
+  padding: 15px;
+  transition: color 0.5s;
+  &:hover {
+    color: var.$darkest-gold;
+  }
+}

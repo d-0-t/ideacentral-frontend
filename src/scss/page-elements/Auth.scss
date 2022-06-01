@@ -1,0 +1,32 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+.passwordVisibility {
+  margin-left: 10px;
+  width: 30px;
+  height: 16px;
+  object-fit: cover;
+  filter: invert(50%);
+}
+.passwordVisibility:hover {
+  filter: invert(70%);
+  cursor: pointer;
+}
+
+.registration {
+  margin: auto;
+  max-width: 400px;
+}
+
+.prompt {
+  text-align: center;
+  font-size: 1.1em;
+  margin: 5px;
+  font-style: italic;
+
+  &__action {
+    font-weight: bold;
+    color: goldenrod;
+    cursor: pointer;
+  }
+}

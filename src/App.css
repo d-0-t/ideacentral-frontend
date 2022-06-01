@@ -1,0 +1,46 @@
+.field-error {
+  color: red;
+  font-size: large;
+  font-weight: bold;
+}
+.flag--small {
+  max-width: 50px;
+}
+.flag--big {
+  max-width: 200px;
+}
+
+.detail__label {
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 100px;
+}
+.card {
+  width: 300px;
+}
+.page {
+  padding: 20px;
+}
+.search-input {
+  max-width: 500px;
+  height: 35px;
+  margin-bottom: 5px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+table.table-fit {
+  width: auto !important;
+  table-layout: auto !important;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}

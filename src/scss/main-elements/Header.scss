@@ -1,0 +1,148 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+header {
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  margin-right: 10px;
+  width: fit-content;
+  align-items: center;
+
+  &__logo {
+    height: 50px;
+  }
+  &__emoji {
+    margin-left: 10px;
+    font-size: 24px;
+  }
+  &__name {
+    color: var.$darkest-gold;
+    margin: 8px;
+    margin-left: 10px;
+    font-family: monospace;
+    font-style: italic;
+    font-size: 32px;
+    cursor: default;
+
+    @include mixins.respond(medium) {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.header-navigation {
+  padding-bottom: 0;
+  background-color: var.$soft-gray;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  @include mixins.respond(medium) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.nav {
+  display: flex;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  justify-content: right;
+  @include mixins.respond(medium) {
+    min-width: 420px;
+    justify-content: center;
+  }
+  &__item {
+    background-color: goldenrod;
+    padding: 0px;
+    height: 100%;
+    border-right: 1px solid rgb(107, 87, 87);
+    border-left: none;
+    @include mixins.respond(medium) {
+      border-top: 1px solid rgb(107, 87, 87);
+    }
+    transition: background-color 0.2s;
+  }
+  &__item:hover {
+    background-color: var.$hover-orange;
+  }
+  &__item--active {
+    background-color: var.$hover-orange;
+    &:hover {
+      background-color: orangered;
+    }
+  }
+  &__item:first-of-type {
+    border-left: 1px solid rgb(107, 87, 87);
+    @include mixins.respond(medium) {
+      border-radius: 12px 0px 0px 0px;
+    }
+  }
+  &__item:last-of-type {
+    @include mixins.respond(medium) {
+      border-radius: 0px 12px 0px 0px;
+    }
+  }
+
+  &__item__btn {
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px black;
+    @include mixins.respond(medium) {
+      min-height: 30px;
+    }
+  }
+  @include mixins.respond(small) {
+    display: none;
+  }
+}
+
+.hamburger {
+  display: none;
+}
+
+@include mixins.respond(small) {
+  .header-navigation {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    max-height: 50px;
+  }
+  .hamburger {
+    min-width: 50px;
+    min-height: 50px;
+    display: flex;
+    &__icon {
+      align-self: center;
+      width: 40px;
+      height: 40px;
+      filter: invert(0.5);
+    }
+  }
+  .hamburger:hover .nav, .nav:hover {
+    display: block;
+  }
+  .nav {
+    min-width: unset;
+    position: absolute;
+    right: 0;
+    height: 35px;
+    &__item {
+      &__btn {
+        justify-content: flex-end;
+      }
+      &:last-of-type {
+        border-radius: 0px 0px 0px 12px;
+      }
+    }
+  }
+}

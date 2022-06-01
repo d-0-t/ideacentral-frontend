@@ -1,0 +1,109 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+}
+.formbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.formbox > h2 {
+  margin-bottom: 0;
+}
+.formfield:first-of-type {
+  padding-top: 0px;
+}
+.formfield:last-of-type {
+  border: 0;
+}
+.formfield {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 8px 0;
+  border-bottom: 1px solid gray;
+
+  &__stacked {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    &__stack {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin-right: 10px;
+    }
+    &__stack:last-of-type {
+      margin: 0;
+    }
+  }
+  &__error {
+    color: rgb(235, 0, 0);
+    width: 100%;
+    overflow-wrap: break-word;
+  }
+  &__label {
+    font-weight: bold;
+    color: var.$darkest-gold;
+    margin: 10px 0px 5px 0px;
+    &__sublabel {
+      font-weight: normal;
+    }
+  }
+  &__button {
+    font-size: 1.1em;
+    margin: 10px;
+  }
+  &__input {
+    margin: 0px 0px 5px 0px;
+    height: 30px;
+    padding: 5px;
+    font-size: 1.05em;
+    border: 1px solid black;
+    border-radius: 5px;
+    &__link {
+      &--title {
+        margin-right: 5px;
+        width: 125px;
+      }
+      &--url {
+        width: 200px;
+      }
+    }
+  }
+  &__select {
+    height: 38px;
+  }
+  &__textarea {
+    box-sizing: border-box;
+    resize: vertical;
+    width: 100%;
+    min-height: 100px;
+    padding: 5px;
+    font-size: 1.05em;
+    border-radius: 5px;
+  }
+  &__textarea-display {
+    margin: 5px 0 10px 0;
+    width: 100%;
+
+    &__textarea {
+      box-sizing: border-box;
+      resize: vertical;
+      width: 100%;
+      min-height: 150px;
+      padding: 5px;
+      font-size: 1.05em;
+      border-radius: 5px;
+    }
+  }
+
+  &--single-small {
+    width: 35%;
+  }
+}

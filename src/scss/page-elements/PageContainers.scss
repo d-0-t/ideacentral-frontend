@@ -1,0 +1,14 @@
+@use "../variables/variables" as var;
+@use "../variables/mixins";
+
+#page-offers,
+#page-links,
+#page-posts,
+#page-contact,
+#page-shop {
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
