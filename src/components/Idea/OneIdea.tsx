@@ -46,10 +46,13 @@ function OneIdea({ idea, showAuthor = true }: IdeaComponentType) {
         </div>
         <div className="idea__titlebox">
           <Voting
-            isUpvoted={populatedIncludesId(idea.stats.upvotes.users, auth.id)}
+            isUpvoted={populatedIncludesId(
+              myUser?.interactions.upvotes,
+              idea._id
+            )}
             isDownvoted={populatedIncludesId(
-              idea.stats.downvotes.users,
-              auth.id
+              myUser?.interactions.downvotes,
+              idea._id
             )}
             isAuthor={authorId === auth.id}
             upvotes={idea.stats.upvotes.count}

@@ -10,6 +10,7 @@ type VotingType = {
   downvotes: number;
   ideaId: string;
   myUserId: string;
+  listing?: boolean;
 };
 
 export default function Voting({
