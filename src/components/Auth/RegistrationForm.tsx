@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../types/typesOfState";
 import { yupUserAuthSchema } from "../../functions/yupSchemas";
-import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   username: "",
@@ -27,8 +26,6 @@ function RegistrationForm() {
     labelTheme = "darktheme__header__brand";
     errorTheme = "darktheme__fieldError";
   }
-
-  let navigate = useNavigate();
 
   const [submitError, setSubmitError]: any = useState();
   function submitFunction(values: any) {
