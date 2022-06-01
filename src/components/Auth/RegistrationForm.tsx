@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../types/typesOfState";
 import { yupUserAuthSchema } from "../../functions/yupSchemas";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   username: "",
@@ -27,6 +28,8 @@ function RegistrationForm() {
     errorTheme = "darktheme__fieldError";
   }
 
+  let navigate = useNavigate();
+
   const [submitError, setSubmitError]: any = useState();
   function submitFunction(values: any) {
     const API_URL = process.env.REACT_APP_API_URL;
@@ -36,7 +39,10 @@ function RegistrationForm() {
         //console.log(data);
         alert("Registration successful! Now you should be able to log in.");
       })
-      .then(() => setSubmitError())
+      .then(() => {
+        setSubmitError();
+        window.location.reload();
+      })
       .catch(function (error) {
         if (error.response) {
           setSubmitError(error.response.data.error);

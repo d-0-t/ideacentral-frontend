@@ -127,3 +127,27 @@ export const yupUserAuthSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Password must match")
     .required("Required"),
 });
+
+export const yupUserLoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email")
+    .required("Required")
+    .min(
+      length.email.min,
+      `Email must be at least ${length.email.min} characters`
+    )
+    .max(
+      length.email.max,
+      `Email must be shorter than ${length.email.max} characters`
+    ),
+  password: Yup.string()
+    .min(
+      length.password.min,
+      `Password must be at least ${length.password.min} characters`
+    )
+    .max(
+      length.password.max,
+      `Password must be shorter than ${length.password.max} characters`
+    )
+    .required("Required"),
+});

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../types/typesOfState";
-import { yupUserAuthSchema } from "../../functions/yupSchemas";
+import { yupUserLoginSchema } from "../../functions/yupSchemas";
 
 const initialValues = {
   email: "",
@@ -31,7 +31,7 @@ function LoginForm() {
     axios
       .post(API_URL + "api/v1/users/login", values)
       .then((data: any) => {
-        //console.log("data: ", data.data.token);
+        //console.log("data: ", data.data);
         if (data?.data?.token) {
           localStorage.setItem("token", data.data.token);
           window.location.reload();
@@ -42,6 +42,7 @@ function LoginForm() {
       })
       .then(() => setSubmitError())
       .catch(function (error) {
+        //console.log(error);
         if (error.response) {
           console.log(error.response.data);
           if (error?.response?.data?.error)
@@ -67,7 +68,7 @@ function LoginForm() {
       <div className="box">
         <Formik
           initialValues={initialValues}
-          validationSchema={yupUserAuthSchema}
+          validationSchema={yupUserLoginSchema}
           onSubmit={(values) => submitFunction(values)}
         >
           {({ values, errors, touched }) => (
