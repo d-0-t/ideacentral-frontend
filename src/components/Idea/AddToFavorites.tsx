@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getMyUser } from "../../redux/actions/actionUser";
 
@@ -20,6 +21,8 @@ export default function AddToFavorites({
   let token: any = localStorage.getItem("token");
   const dispatch = useDispatch();
 
+  const [favorited, setFavorited] = useState<boolean>(isFavorite);
+
   const API_URL = process.env.REACT_APP_API_URL;
   function favorite() {
     let mode = isFavorite ? "unfav" : "fav";
@@ -30,6 +33,10 @@ export default function AddToFavorites({
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((favData: any) => {
+        // update stuff in case they don't reload
+        if (mode === "fav") setFavorited(true);
+        if (mode === "unfav") setFavorited(false);
+
         // re-fetch my user data as well
         axios
           .get(`${API_URL}api/v1/users/${myUserId}`, {
@@ -49,7 +56,7 @@ export default function AddToFavorites({
 
   let btnText = isFavorite ? "Remove from favorites" : "Add to favorites";
   let heartTheme = "heart-shape";
-  if (isFavorite) heartTheme += " heart-shape--active";
+  if (favorited) heartTheme += " heart-shape--active";
 
   return (
     <div className="favorite" onClick={() => favorite()}>
