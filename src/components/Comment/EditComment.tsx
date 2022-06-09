@@ -17,12 +17,12 @@ function EditComment({ commentId, comment }: CommentFormComponent) {
 
   const { theme } = useSelector((state: RootState) => state.themeReducer);
   let inputTheme = "";
-  let btnTheme = "";
+  //let btnTheme = "";
   let formTheme = "";
   let errorTheme = "";
   if (theme === "other") {
     inputTheme = "darktheme__input";
-    btnTheme = "darktheme__btn";
+    //btnTheme = "darktheme__btn";
     formTheme = "darktheme__post";
     errorTheme = "darktheme__fieldError";
   }
