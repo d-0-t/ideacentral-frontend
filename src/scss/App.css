@@ -899,18 +899,6 @@ form {
   background-color: rgba(0, 0, 0, 0.103);
 }
 
-.comments {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-top: 1px solid gray;
-  margin: 20px 10px 10px 10px;
-}
-.comments__title {
-  font-weight: bold;
-  margin: 10px;
-}
-
 .votes {
   display: flex;
   flex-direction: column;
@@ -1000,6 +988,138 @@ form {
 
 .heart-shape:hover {
   display: block;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid gray;
+  margin: 20px 10px 10px 10px;
+}
+.comments__title {
+  font-weight: bold;
+  margin: 10px;
+}
+.comments__comments {
+  margin-top: 10px;
+}
+
+.comment {
+  margin: 10px 0px;
+  border-bottom: 1px dotted gray;
+  background: linear-gradient(rgba(255, 255, 255, 0.041), rgba(218, 165, 32, 0.062));
+  padding: 8px;
+  border-radius: 8px;
+}
+.comment__body__authorBlock {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  margin-bottom: 3px;
+}
+.comment__body__author {
+  display: flex;
+  justify-content: space-between;
+}
+.comment__body__author__username {
+  margin-left: 5px;
+  font-weight: bold;
+}
+.comment__body__comment {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+.comment__body__edit {
+  margin-top: 5px;
+}
+.comment__body__edit__title {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.comment__time {
+  font-size: 0.8rem;
+  text-align: right;
+}
+.comment__buttons {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.comment__buttons__btn {
+  height: fit-content;
+  width: fit-content;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 3px 4px;
+  margin-left: 5px;
+  border-radius: 5px;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.685);
+}
+.comment__buttons__btn--edit {
+  background-color: gray;
+}
+.comment__buttons__btn--edit:hover {
+  outline: 1px solid #b1b1b1;
+  background-color: #a7a7a7;
+}
+.comment__buttons__btn--delete {
+  background-color: rgba(255, 0, 0, 0.486);
+}
+.comment__buttons__btn--delete:hover {
+  outline: 1px solid gray;
+  background-color: rgba(247, 40, 40, 0.918);
+}
+.comment__buttons__btn--cancel {
+  margin: 5px 0;
+  background-color: rgba(255, 0, 0, 0.486);
+}
+.comment__buttons__btn--cancel:hover {
+  outline: 1px solid gray;
+  background-color: rgba(247, 40, 40, 0.918);
+}
+.comment__buttons__btn--submit {
+  background-color: rgba(0, 128, 0, 0.514);
+}
+.comment__buttons__btn--submit:hover {
+  outline: 1px solid #b1b1b1;
+  background-color: rgba(68, 207, 68, 0.651);
+}
+.comment--new {
+  min-width: 200px;
+  width: 100%;
+  max-width: 100%;
+}
+.comment--new .form {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 500px) {
+  .comment--new .form {
+    flex-direction: column;
+  }
+}
+.comment--new .form .formfield {
+  padding-bottom: 0;
+}
+.comment--new .form .formfield__textarea {
+  min-height: 42px;
+  height: fit-content;
+  margin: 0;
+}
+.comment--new .form .btn {
+  justify-self: flex-end;
+  align-self: flex-end;
+  margin: 0px;
+  margin-left: 5px;
+}
+@media (max-width: 500px) {
+  .comment--new .form .btn {
+    align-self: flex-end;
+    margin: 5px 2px;
+  }
 }
 
 .btn {
@@ -1795,6 +1915,10 @@ hr {
 
 .max-800-wide {
   max-width: 800px;
+}
+
+.width-80p {
+  width: 80%;
 }
 
 .noselect {

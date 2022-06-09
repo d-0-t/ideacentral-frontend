@@ -101,7 +101,7 @@ export default function IdeaEdit() {
   function submitFunction(values: Partial<IdeaDocument>) {
     let ideaCheck: string;
     let dataToSend: any = { ...values };
-    dataToSend.tags = tagSplitter(dataToSend.tags);
+    dataToSend.tags = tagSplitter(dataToSend.tags.toLowerCase());
     dataToSend.anonymous = booleanTransform(dataToSend.anonymous);
     dataToSend.published = booleanTransform(dataToSend.published);
 
@@ -160,7 +160,7 @@ export default function IdeaEdit() {
   while (failedRequest) return <ErrorPage error={failedRequest} />;
 
   return (
-    <div className="box">
+    <div className="box width-80p">
       <h1>New idea</h1>
       <Formik
         initialValues={initialValues}

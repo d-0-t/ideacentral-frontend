@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 
 import ButtonGoBack from "../../components/Buttons/ButtonGoBack";
 import ButtonToPath from "../../components/Buttons/ButtonToPath";
+import CommentForm from "../../components/Comment/NewComment";
+import OneComment from "../../components/Comment/OneComment";
 import AddToFavorites from "../../components/Idea/AddToFavorites";
 import AuthorLabel from "../../components/Idea/AuthorLabel";
 import RandomIdeaHeadline from "../../components/Idea/RandomIdeaHeadline";
@@ -16,6 +18,7 @@ import dateParser from "../../functions/dateParser";
 import { errorResponseObjectConstructor } from "../../functions/errorResponseObjectConstructor";
 import populatedIncludesId from "../../functions/populatedIncludesId";
 import { getMyUser } from "../../redux/actions/actionUser";
+import { CommentDocument } from "../../types/typesOfModels/CommentType";
 import { IdeaDocument } from "../../types/typesOfModels/IdeaType";
 import { RootState } from "../../types/typesOfState";
 import { AuthType, ErrorResponseType } from "../../types/typesOfUtility";
@@ -114,7 +117,7 @@ function IdeaPage() {
             )}
           </div>
         </div>
-        <div className="box max-800-wide margin-auto">
+        <div className="box max-800-wide">
           <div>
             <div className="idea__titlebox">
               <Voting
@@ -162,8 +165,15 @@ function IdeaPage() {
           </div>
           <div className="comments">
             <div className="comments__title">Comments</div>
-            <div className="comments__new">Add new comment form</div>
-            <div className="comments__comments">Load other comments here</div>
+            <CommentForm ideaId={idea._id} authorId={auth.id} />
+            <div className="comments__comments">
+              {
+                //@ts-ignore
+                idea.comments.map((comment: CommentDocument, i: number) => {
+                  return <OneComment comment={comment} key={i} />;
+                })
+              }
+            </div>
           </div>
         </div>
       </div>

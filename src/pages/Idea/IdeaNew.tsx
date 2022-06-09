@@ -21,6 +21,7 @@ import { booleanTransform } from "../../functions/booleanTransform";
 /////////////////////////////////////////
 
 export default function IdeaNew() {
+  document.title = "New idea - IdeaCentral";
   let token: any = localStorage.getItem("token");
   let auth: AuthType = jwtDecode(token);
 
@@ -93,7 +94,7 @@ export default function IdeaNew() {
     let ideaId: string;
     // Transform string "true" / "false" to boolean
     let dataToSend: any = { ...values };
-    dataToSend.tags = tagSplitter(dataToSend.tags);
+    dataToSend.tags = tagSplitter(dataToSend.tags.toLowerCase());
     dataToSend.anonymous = booleanTransform(dataToSend.anonymous);
     dataToSend.published = booleanTransform(dataToSend.published);
 
@@ -126,7 +127,7 @@ export default function IdeaNew() {
     );
 
   return (
-    <div className="box">
+    <div className="box width-80p">
       <h1>New idea</h1>
       <Formik
         initialValues={initialValues}

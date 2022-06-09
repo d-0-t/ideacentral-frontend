@@ -31,7 +31,7 @@ export default function IdeasPublic() {
     axios
       .get(`${API_URL}api/v1/ideas/published`)
       .then((data: any) => {
-        setIdeas(data.data);
+        setIdeas(data.data.reverse());
         document.title = `Ideas - IdeaCentral`;
       })
       .catch(function (error) {

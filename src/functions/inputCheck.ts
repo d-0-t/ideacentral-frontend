@@ -5,9 +5,19 @@ export const urlRegex = /https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-
  // eslint-disable-next-line
 export const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+export const whiteSpaceOnly = /^\s+$/;
+
 export const ageLimit = 13;
 export const minBirthDate: number = new Date("1890").getTime();
 export const maxBirthDate: number = new Date((new Date().getFullYear() - ageLimit).toString()).getTime();
+
+export function lengthCheckWithoutWhitespace(
+  minLength: number, text: string
+  ): boolean {
+    let cleanString = text.replaceAll(/\s+/g, "");
+    if (cleanString.length < minLength) return false;
+  return true;
+}
 
 export type LengthType = {
   [key: string]: { min: number; max: number };

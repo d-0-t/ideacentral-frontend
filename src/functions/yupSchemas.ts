@@ -4,6 +4,7 @@ import {
   ageLimit,
   emailRegex,
   length,
+  lengthCheckWithoutWhitespace,
   maxBirthDate,
   minBirthDate,
   phoneRegex,
@@ -15,10 +16,16 @@ export const yupIdeaSchema = Yup.object().shape({
   title: Yup.string()
     .min(length.title.min, `Min ${length.title.min} characters`)
     .max(length.title.max, `Max ${length.title.max} characters`)
-    .required("Required"),
+    .required("Required")
+    .test("no-whitespace", "Invalid input", (value = "") => {
+      return lengthCheckWithoutWhitespace(length.title.min, value);
+    }),
   description: Yup.string()
     .min(length.description.min, `Min ${length.description.min} characters`)
-    .max(length.description.max, `Max ${length.description.max} characters`),
+    .max(length.description.max, `Max ${length.description.max} characters`)
+    .test("no-whitespace", "Invalid input", (value = "") => {
+      return lengthCheckWithoutWhitespace(length.description.min, value);
+    }),
   tags: Yup.string()
     .max(100, `Max a sum of ${100} characters allowed`)
     .matches(/^[\w\d ,]*$/gim, "English letters only!")
@@ -150,4 +157,20 @@ export const yupUserLoginSchema = Yup.object().shape({
       `Password must be shorter than ${length.password.max} characters`
     )
     .required("Required"),
+});
+
+export const yupCommentSchema = Yup.object().shape({
+  comment: Yup.string()
+    //.required("Required")
+    .min(
+      length.comment.min,
+      `Must be at least ${length.comment.min} characters`
+    )
+    .max(
+      length.comment.max,
+      `Must be shorter than ${length.comment.max} characters`
+    )
+    .test("no-whitespace", "", (value = "") => {
+      return lengthCheckWithoutWhitespace(length.comment.min, value);
+    }),
 });

@@ -9,7 +9,7 @@ export type IdeaDocument = Document & {
   tags: string[] | string;
   published: boolean;
   anonymous: boolean;
-  comments: string[] | Partial<CommentDocument>[];
+  comments: string[] | CommentDocument[];
   stats: {
     upvotes: {
       count: number;
