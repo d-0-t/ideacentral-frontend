@@ -42,6 +42,11 @@ function Navigation() {
           />
           <ButtonNavigation
             classToApply={btnClass}
+            linkToPath="/ideas/public"
+            buttonText="Ideas"
+          />
+          <ButtonNavigation
+            classToApply={btnClass}
             linkToPath="/auth"
             buttonText="Log in"
           />

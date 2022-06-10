@@ -37,15 +37,14 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/auth" element={<Auth />}></Route>
 
+            <Route path="/ideas/public" element={<IdeasPublic />} />
+              <Route path="/ideas/:ideaId" element={<IdeaPage />} />
             <Route element={<IsUserAuthenticated />}>
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/edit" element={<ProfileEdit />} />
               <Route path="/user/:userId" element={<ProfilePublic />} />
-
-              <Route path="/ideas/public" element={<IdeasPublic />} />
               <Route path="/ideas/new" element={<IdeaNew />} />
               <Route path="/ideas/manager" element={<IdeasManager />} />
-              <Route path="/ideas/:ideaId" element={<IdeaPage />} />
               <Route path="/ideas/:ideaId/edit" element={<IdeaEdit />} />
             </Route>
 

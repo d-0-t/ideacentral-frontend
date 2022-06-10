@@ -10,7 +10,7 @@ import EditComment from "./EditComment";
 
 function OneComment({ comment }: { comment: CommentDocument }) {
   let token: any = localStorage.getItem("token");
-  let auth: AuthType = jwtDecode(token);
+  let auth: AuthType | null = token ? jwtDecode(token) : null;
 
   const API_URL = process.env.REACT_APP_API_URL;
   function deleteComment() {
@@ -48,11 +48,14 @@ function OneComment({ comment }: { comment: CommentDocument }) {
               size="tiny"
               userId={comment.author._id}
             />{" "}
-            <span className="comment__body__author__username">
+            <a
+              href={`/user/${comment.author._id}`}
+              className="link--nostyle comment__body__author__username"
+            >
               {comment.author.login?.username}:
-            </span>
+            </a>
           </div>
-          {auth.id === comment.author._id && (
+          {auth?.id === comment.author._id && (
             <div className="comment__buttons">
               <div
                 className="comment__buttons__btn comment__buttons__btn--edit"

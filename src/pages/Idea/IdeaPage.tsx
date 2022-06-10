@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 import ButtonGoBack from "../../components/Buttons/ButtonGoBack";
 import ButtonToPath from "../../components/Buttons/ButtonToPath";
-import CommentForm from "../../components/Comment/NewComment";
+import NewComment from "../../components/Comment/NewComment";
 import OneComment from "../../components/Comment/OneComment";
 import AddToFavorites from "../../components/Idea/AddToFavorites";
 import AuthorLabel from "../../components/Idea/AuthorLabel";
@@ -26,7 +26,7 @@ import ErrorPage from "../Utility/ErrorPage";
 
 function IdeaPage() {
   let token: any = localStorage.getItem("token");
-  let auth: AuthType = jwtDecode(token);
+  let auth: AuthType | null = token ? jwtDecode(token) : null;
 
   const { myUser } = useSelector((state: RootState) => state.userReducer);
   let { ideaId } = useParams();
@@ -48,13 +48,9 @@ function IdeaPage() {
 
   const API_URL = process.env.REACT_APP_API_URL;
   useEffect(() => {
-    if (!myUser) {
+    if (!myUser && auth) {
       axios
-        .get(`${API_URL}api/v1/users/${auth.id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get(`${API_URL}api/v1/users/${auth.id}`)
         .then((data: any) => {
           dispatch(getMyUser(data.data));
         })
@@ -82,14 +78,14 @@ function IdeaPage() {
         let err: any = errorResponseObjectConstructor(error as AxiosError);
         setFailedRequest(err);
       });
-  }, [dispatch, auth.id, token, API_URL, ideaId, myUser]);
+  }, [dispatch, auth, token, API_URL, ideaId, myUser]);
 
   while (failedRequest) return <ErrorPage error={failedRequest} />;
   if (!failedRequest) {
-    if (!myUser || !idea || !ideaId) return <Loading />;
+    if ((!myUser && token) || !idea || !ideaId) return <Loading />;
   }
 
-  if (idea && typeof idea.author !== "string" && myUser && ideaId) {
+  if (idea && typeof idea.author !== "string" && ideaId) {
     //prettier-ignore
     let postedAt: string | null = dateParser(idea.createdAt, "written", true, true, true);
     //prettier-ignore
@@ -100,18 +96,18 @@ function IdeaPage() {
           <RandomIdeaHeadline />
           <div className="idea__head__buttons">
             <ButtonGoBack />
-            {myUser._id === idea.author._id ? (
+            {myUser?._id === idea.author._id ? (
               <ButtonToPath
                 title="Edit"
                 linkToPath={`/ideas/${idea._id}/edit`}
               />
             ) : (
               <AddToFavorites
-                myUserId={myUser._id}
+                myUserId={myUser?._id || null}
                 ideaId={ideaId}
                 isFavorite={populatedIncludesId(
                   idea.stats.favorites.users,
-                  myUser._id
+                  myUser?._id || null
                 )}
               />
             )}
@@ -123,17 +119,17 @@ function IdeaPage() {
               <Voting
                 isUpvoted={populatedIncludesId(
                   idea.stats.upvotes.users,
-                  myUser._id
+                  myUser?._id || null
                 )}
                 isDownvoted={populatedIncludesId(
                   idea.stats.downvotes.users,
-                  myUser._id
+                  myUser?._id || null
                 )}
-                isAuthor={idea.author._id === myUser._id}
+                isAuthor={idea.author._id === myUser?._id}
                 upvotes={idea.stats.upvotes.count}
                 downvotes={idea.stats.downvotes.count}
                 ideaId={idea._id}
-                myUserId={myUser._id}
+                myUserId={myUser?._id || null}
               />
               <h2 className={ideaTitleTheme}>{idea.title}</h2>
             </div>
@@ -142,7 +138,7 @@ function IdeaPage() {
               avatar={idea.author.personal?.avatar || ""}
               power={idea.author.power || 0}
               userId={idea.author._id}
-              myUserId={myUser._id}
+              myUserId={myUser?._id || null}
               anonymous={idea.anonymous}
             />
             <div className="idea__description break-word preserveLinebreak">
@@ -165,7 +161,13 @@ function IdeaPage() {
           </div>
           <div className="comments">
             <div className="comments__title">Comments</div>
-            <CommentForm ideaId={idea._id} authorId={auth.id} />
+            {auth ? (
+              <NewComment ideaId={idea._id} authorId={auth.id} />
+            ) : (
+              <div className="comment--new">
+                You must be logged in to write a new comment.
+              </div>
+            )}
             <div className="comments__comments">
               {
                 //@ts-ignore

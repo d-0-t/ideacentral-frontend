@@ -1,4 +1,5 @@
-export default function populatedIncludesId(data: any, id: string) {
+export default function populatedIncludesId(data: any, id: string | null) {
+  if (id === null) return false;
   let found: boolean = false;
 
   if (Array.isArray(data))

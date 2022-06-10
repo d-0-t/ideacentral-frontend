@@ -856,6 +856,9 @@ form {
 .idea__bottom > .tags--withEdit {
   margin-right: 82px;
 }
+.idea__bottom > .tags--loggedOut {
+  margin-right: 14px;
+}
 
 .idea-circle {
   display: block;
@@ -1885,6 +1888,11 @@ h3 {
 
 hr {
   margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .app {

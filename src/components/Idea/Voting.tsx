@@ -11,7 +11,7 @@ type VotingType = {
   upvotes: number;
   downvotes: number;
   ideaId: string;
-  myUserId: string;
+  myUserId: string | null;
   listing?: boolean;
 };
 
@@ -59,6 +59,10 @@ export default function Voting({
     mode: "upvote" | "downvote" | "upvote-remove" | "downvote-remove"
   ) {
     if (isAuthor) return;
+    if (!token) {
+      alert(`You must be logged in to ${mode} an idea.`);
+      return;
+    }
     if (mode === "upvote" && upvotedState) mode += "-remove";
     if (mode === "downvote" && downvotedState) mode += "-remove";
 

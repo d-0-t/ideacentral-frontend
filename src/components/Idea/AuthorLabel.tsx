@@ -5,7 +5,7 @@ type AuthorLabelType = {
   avatar: string;
   power: number;
   userId?: string;
-  myUserId: string;
+  myUserId: string | null;
   anonymous: boolean;
 };
 

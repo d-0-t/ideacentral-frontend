@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { getMyUser } from "../../redux/actions/actionUser";
 
 type FavType = {
-  myUserId: string;
+  myUserId: string | null;
   ideaId: string;
   //isAuthor: boolean;
   isFavorite: boolean;
@@ -25,6 +25,10 @@ export default function AddToFavorites({
 
   const API_URL = process.env.REACT_APP_API_URL;
   function favorite() {
+    if (!token || myUserId === null) {
+      alert(`You must be logged in to favorite an idea.`);
+      return;
+    }
     let mode = isFavorite ? "unfav" : "fav";
     axios
       .patch(

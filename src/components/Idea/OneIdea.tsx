@@ -18,7 +18,7 @@ type IdeaComponentType = { idea: IdeaDocument; showAuthor?: boolean };
 
 function OneIdea({ idea, showAuthor = true }: IdeaComponentType) {
   let token: any = localStorage.getItem("token");
-  let auth: AuthType = jwtDecode(token);
+  let auth: AuthType | null = token ? jwtDecode(token) : null;
   const { myUser } = useSelector((state: RootState) => state.userReducer);
   const { theme } = useSelector((state: RootState) => state.themeReducer);
   let ideaTitleTheme =
@@ -34,7 +34,9 @@ function OneIdea({ idea, showAuthor = true }: IdeaComponentType) {
       : idea.author;
 
   let tagsClass =
-    myUser && auth?.id !== authorId ? "tags" : "tags tags--withEdit";
+    auth === null || (myUser && auth?.id !== authorId)
+      ? "tags"
+      : "tags tags--withEdit";
 
   const navigate = useNavigate();
 
@@ -46,16 +48,19 @@ function OneIdea({ idea, showAuthor = true }: IdeaComponentType) {
         </div>
         <div className="idea__titlebox">
           <Voting
-            isUpvoted={populatedIncludesId(idea.stats.upvotes.users, auth.id)}
+            isUpvoted={populatedIncludesId(
+              idea.stats.upvotes.users,
+              auth?.id || null
+            )}
             isDownvoted={populatedIncludesId(
               idea.stats.downvotes.users,
-              auth.id
+              auth?.id || null
             )}
-            isAuthor={authorId === auth.id}
+            isAuthor={authorId === auth?.id}
             upvotes={idea.stats.upvotes.count}
             downvotes={idea.stats.downvotes.count}
             ideaId={idea._id}
-            myUserId={auth.id}
+            myUserId={auth?.id || null}
           />
           <h2
             className={ideaTitleTheme}
@@ -64,22 +69,33 @@ function OneIdea({ idea, showAuthor = true }: IdeaComponentType) {
             {idea.title}
           </h2>
           <div className="idea__titlebox__btn">
-            {auth.id === authorId && (
+            {auth?.id === authorId && (
               <ButtonToPath
                 title="Edit"
                 linkToPath={`/ideas/${idea._id}/edit`}
               />
             )}
-            {myUser && auth.id !== authorId && (
+            {!myUser || !auth ? (
               <AddToFavorites
-                myUserId={auth.id}
+                myUserId={null}
                 ideaId={idea._id}
-                isFavorite={populatedIncludesId(
-                  myUser.interactions.favorites,
-                  idea._id
-                )}
+                isFavorite={false}
                 withoutText={true}
               />
+            ) : (
+              myUser &&
+              auth?.id &&
+              auth.id !== authorId && (
+                <AddToFavorites
+                  myUserId={auth.id}
+                  ideaId={idea._id}
+                  isFavorite={populatedIncludesId(
+                    myUser.interactions.favorites,
+                    idea._id
+                  )}
+                  withoutText={true}
+                />
+              )
             )}
           </div>
         </div>
@@ -90,7 +106,7 @@ function OneIdea({ idea, showAuthor = true }: IdeaComponentType) {
               avatar={idea.author.personal?.avatar || ""}
               power={idea.author.power || 0}
               userId={idea.author._id}
-              myUserId={auth?.id || "unauthorized"}
+              myUserId={auth?.id || null}
               anonymous={idea.anonymous}
             />
           ) : (
